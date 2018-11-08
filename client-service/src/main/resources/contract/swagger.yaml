@@ -1,0 +1,52 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: 'Client API'
+
+schemes:
+- http
+- https
+
+basePath: /
+
+paths:
+  /clients:
+    get:
+      tags:
+      - Get all clients information
+      operationId: getAllClients
+      responses:
+        200:
+          description: Campaigns retrieved
+          schema:
+            type: array
+            items:
+              $ref: './entities/client.json'
+    post:
+      tags:
+      - Create Client
+      operationId: createClient
+      parameters:
+      - name: client
+        in: body
+        type: object
+        required: true
+        schema:
+          $ref: './entities/client.json'
+      responses:
+        201:
+          description: 'Client created'
+  /clients/{id}:
+    get:
+      tags:
+      - Get client information
+      operationId: getClient
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        200:
+          schema:
+            $ref: './entities/client.json'
