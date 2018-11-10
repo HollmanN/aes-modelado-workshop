@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Identification",
+  "description": "Wrapper for the identification entity",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The id of the identification",
+      "type": "integer"
+    },
+    "idType": {
+      "type": "string",
+      "enum": [
+        "CC",
+        "CE",
+        "PASSPORT"
+      ]
+    },
+    "idNumber": {
+      "description": "The number of the identification",
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 20
+    }
+  },
+  "required": [
+    "idType",
+    "idNumber"
+  ],
+  "additionalProperties": false
+}

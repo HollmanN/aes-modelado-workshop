@@ -1,6 +1,7 @@
 package edu.javeriana.aes.model.clientservice.service;
 
 import edu.javeriana.aes.model.entities.Client;
+import edu.javeriana.aes.model.entities.Identification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,15 @@ public class ClientService {
     public Client getClient(String id) {
         Client client = new Client();
         client.setId(id);
-        client.setName("Test");
-        client.setLastName("Test");
-        client.setEmail("test@test.com");
-        client.setPhone("+573023844696");
+        client.setName("Hollman");
+        client.setLastName("Castro");
+        client.setEmail("hollman_castro@outlook.com");
+        client.setPhone("+571234567890");
+
+        Identification identification = new Identification();
+        identification.setIdType(Identification.IdTypeEnum.CC);
+        identification.setIdNumber("1234567890");
+        client.setIdentification(identification);
 
         return client;
     }

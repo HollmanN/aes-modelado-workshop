@@ -8,24 +8,34 @@
       "description": "The id of the client",
       "type": "string"
     },
+    "identification": {
+      "description": "The full identification of the Client",
+      "$ref": "./identification.json"
+    },
     "name": {
       "type": "string",
-      "minimum": 3,
-      "pattern": "[a-zA-Z]+"
+      "minLength": 3,
+      "maxLength": 15
     },
     "lastName": {
       "type": "string",
-      "minimum": 3,
-      "pattern": "[a-zA-Z]+"
+      "minLength": 3,
+      "maxLength": 15
     },
     "email": {
       "type": "string",
-      "format": "email"
+      "pattern": "^[a-z0-9]+(.[_a-z0-9]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,15})$"
     },
     "phone": {
       "type": "string",
-      "format": "email"
+      "pattern": "^(([0-9]{3})-?)?[0-9]{7}$"
     }
   },
+  "required": [
+    "name",
+    "lastName",
+    "identification",
+    "email"
+  ],
   "additionalProperties": false
 }
