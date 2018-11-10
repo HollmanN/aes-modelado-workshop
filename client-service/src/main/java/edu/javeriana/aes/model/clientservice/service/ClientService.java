@@ -13,7 +13,7 @@ public class ClientService {
 
     private final static Logger logger = LoggerFactory.getLogger(ClientService.class);
 
-    public Client getClient(String id) {
+    public Client getClient(int id) {
         Client client = new Client();
         client.setId(id);
         client.setName("Hollman");
@@ -23,7 +23,7 @@ public class ClientService {
 
         Identification identification = new Identification();
         identification.setIdType(Identification.IdTypeEnum.CC);
-        identification.setIdNumber("1234567890");
+        identification.setIdValue("1234567890");
         client.setIdentification(identification);
 
         return client;

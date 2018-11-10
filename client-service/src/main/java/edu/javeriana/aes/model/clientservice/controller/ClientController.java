@@ -35,7 +35,7 @@ public class ClientController implements ClientsApi {
 
     @Override
     public ResponseEntity<List<Client>> getAllClients() {
-        String id = "12345";
+        int id = 12345;
         List<Client> clientList = new ArrayList<Client>() {{
             add(clientService.getClient(id));
         }};
@@ -44,7 +44,7 @@ public class ClientController implements ClientsApi {
     }
 
     @Override
-    public ResponseEntity<Client> getClient(String id) {
+    public ResponseEntity<Client> getClient(Integer id) {
         return new ResponseEntity<>(clientService.getClient(id), HttpStatus.OK);
     }
 }

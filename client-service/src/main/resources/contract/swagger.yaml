@@ -44,7 +44,7 @@ paths:
       parameters:
       - name: id
         in: path
-        type: string
+        type: integer
         required: true
       responses:
         200:

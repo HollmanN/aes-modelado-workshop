@@ -4,11 +4,8 @@
   "description": "Wrapper for the identification entity",
   "type": "object",
   "properties": {
-    "id": {
-      "description": "The id of the identification",
-      "type": "integer"
-    },
     "idType": {
+      "description": "Type of identification",
       "type": "string",
       "enum": [
         "CC",
@@ -16,8 +13,8 @@
         "PASSPORT"
       ]
     },
-    "idNumber": {
-      "description": "The number of the identification",
+    "idValue": {
+      "description": "The value of the identification",
       "type": "string",
       "minLength": 6,
       "maxLength": 20
@@ -25,7 +22,7 @@
   },
   "required": [
     "idType",
-    "idNumber"
+    "idValue"
   ],
   "additionalProperties": false
 }
