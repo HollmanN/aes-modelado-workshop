@@ -8,9 +8,20 @@
       "description": "The id of the client",
       "type": "integer"
     },
-    "identification": {
-      "description": "The full identification of the Client",
-      "$ref": "./identification.json"
+    "idType": {
+      "description": "Type of identification",
+      "type": "string",
+      "enum": [
+        "CC",
+        "CE",
+        "PASSPORT"
+      ]
+    },
+    "idValue": {
+      "description": "The value of the identification",
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 20
     },
     "name": {
       "type": "string",
@@ -32,6 +43,8 @@
     }
   },
   "required": [
+    "idType",
+    "idValue",
     "name",
     "lastName",
     "identification",
