@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 ./mvnw clean install
-docker-compose up
+docker-compose up --build
