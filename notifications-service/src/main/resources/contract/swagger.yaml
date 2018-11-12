@@ -1,0 +1,27 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: 'Notifications API'
+
+schemes:
+- http
+- https
+
+basePath: /
+
+paths:
+  /notifications:
+    post:
+      tags:
+      - Send Notification
+      operationId: sendNotification
+      parameters:
+      - name: notification
+        in: body
+        type: object
+        required: true
+        schema:
+          $ref: './entities/notification.json'
+      responses:
+        201:
+          description: 'Notification send'

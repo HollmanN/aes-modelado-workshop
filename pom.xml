@@ -9,5 +9,6 @@
 
     <modules>
         <module>client-service</module>
+        <module>notifications-service</module>
     </modules>
 </project>
