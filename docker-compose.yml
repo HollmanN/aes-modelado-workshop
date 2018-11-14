@@ -1,34 +1,42 @@
-version: '3'
+version: '2.2'
 services:
+  registry:
+    build: inventory-service
+    ports:
+    - "8761:8761"
+    expose:
+    - "8761"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://host.docker.internal:8761"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
   client-service:
     build: client-service
     ports:
     - "8081:8080"
-    networks:
-    - aes-workshop
+    depends_on:
+      registry:
+        condition: service_healthy
   mailhog:
     image: mailhog/mailhog
     ports:
     - "1025:1025"
     - "8025:8025"
-    networks:
-    - aes-workshop
   notification-service:
     build: notifications-service
     ports:
     - "8082:8080"
     depends_on:
-      - mailhog
-    networks:
-    - aes-workshop
+      registry:
+        condition: service_healthy
+      mailhog:
+        condition: service_started
   soap-gas-service:
     build: soap-consumer-service
     ports:
     - "8083:8080"
-    networks:
-    - aes-workshop
-
-networks:
-  aes-workshop:
-    driver: bridge
+    depends_on:
+      registry:
+        condition: service_healthy
 
