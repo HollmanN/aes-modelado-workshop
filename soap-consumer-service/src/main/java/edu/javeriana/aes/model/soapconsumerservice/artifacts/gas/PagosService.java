@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "PagosService", targetNamespace = "http://boundary.pagos.modval.aes.javeriana.edu.co/", wsdlLocation = "http://ec2-177-71-199-9.sa-east-1.compute.amazonaws.com:8080/gas-natural/PagosService?wsdl")
+@WebServiceClient(name = "PagosService", targetNamespace = "http://boundary.pagos.modval.aes.javeriana.edu.co/", wsdlLocation = "http://ec2-18-218-36-246.us-east-2.compute.amazonaws.com:8080/gas-natural/PagosService?wsdl")
 public class PagosService
     extends Service
 {
@@ -30,7 +30,7 @@ public class PagosService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://ec2-177-71-199-9.sa-east-1.compute.amazonaws.com:8080/gas-natural/PagosService?wsdl");
+            url = new URL("http://ec2-18-218-36-246.us-east-2.compute.amazonaws.com:8080/gas-natural/PagosService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
