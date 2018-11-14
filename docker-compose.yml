@@ -21,6 +21,12 @@ services:
       - mailhog
     networks:
     - aes-workshop
+  soap-gas-service:
+    build: soap-consumer-service
+    ports:
+    - "8083:8080"
+    networks:
+    - aes-workshop
 
 networks:
   aes-workshop:
