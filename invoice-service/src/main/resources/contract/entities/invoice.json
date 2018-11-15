@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Invoice",
+  "description": "Describes a Invoice in the ABC Bank System",
+  "type": "object",
+  "properties": {
+    "idInvoice": {
+      "description": "The id of the invoice",
+      "type": "string"
+    },
+    "idClient": {
+      "description": "The id of the client",
+      "type": "integer"
+    },
+    "amount": {
+      "description": "The amount of the client",
+      "type": "number"
+    },
+    "channel": {
+      "description": "Payment Channel",
+      "type": "string",
+      "enum": [
+        "ATM",
+        "PHONE",
+        "WEB",
+        "MOBILE"
+      ]
+    }
+  },
+  "required": [
+    "idInvoice",
+    "idClient",
+    "channel"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,60 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: 'Invoice API'
+
+schemes:
+- http
+- https
+
+basePath: /
+
+paths:
+  /invoice:
+    post:
+      tags:
+      - Pay invoice
+      operationId: payInvoice
+      parameters:
+      - name: invoice
+        in: body
+        type: object
+        required: true
+        schema:
+          $ref: './entities/invoice.json'
+      responses:
+        200:
+          description: 'Invoice payed'
+        400:
+          description: 'Error on pay'
+    patch:
+      tags:
+      - Compensate invoice
+      operationId: compensateInvoice
+      parameters:
+      - name: invoice
+        in: body
+        type: object
+        required: true
+        schema:
+          $ref: './entities/invoice.json'
+      responses:
+        200:
+          description: 'Invoice compensation OK'
+        400:
+          description: 'Error on compensation'
+  /invoice/{invoice}:
+    get:
+      tags:
+      - Get invoice
+      operationId: getInvoice
+      parameters:
+      - name: invoice
+        in: path
+        type: string
+        required: true
+      responses:
+        200:
+          description: 'Get information of invoice'
+          schema:
+            $ref: './entities/invoice.json'

@@ -12,5 +12,6 @@
         <module>client-service</module>
         <module>notifications-service</module>
         <module>soap-consumer-service</module>
+        <module>invoice-service</module>
     </modules>
 </project>
