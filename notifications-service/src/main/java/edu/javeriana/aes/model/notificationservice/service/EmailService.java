@@ -40,6 +40,23 @@ public class EmailService {
         LOG.info("Send email notification to user success!");
     }
 
+    public void deliver(String notification) {
+
+        MimeMessage message = sender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        try {
+            LOG.info("Sending email notification {} to user {}", "jmiguelarroyo12@gmail.com", "jmiguelarroyo12@gmail.com");
+            helper.setFrom("jmiguelarroyo12@gmail.com");
+            helper.setTo("jmiguelarroyo12@gmail.com");
+            helper.setText(notification);
+            helper.setSubject("KAfka test");
+            sender.send(message);
+        } catch (Exception e) {
+            LOG.error("Error sending email notification {}", notification, e);
+        }
+        LOG.info("Send email notification to user success!");
+    }
+
     private Email buildEmail(final Notification notification) {
         //TODO: Connect with the client-service
         final String fromEmail = "aes-workshop@javeriana.edu.co";

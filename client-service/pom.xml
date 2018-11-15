@@ -97,6 +97,19 @@
             <scope>provided</scope>
         </dependency>
         -->
+
+        <!-- Kafka -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+
+        </dependency>
+        <!-- Kafka -->
     </dependencies>
 
     <dependencyManagement>
