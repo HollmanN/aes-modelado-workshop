@@ -39,4 +39,11 @@ services:
     depends_on:
       registry:
         condition: service_healthy
+  invoice-service:
+    build: invoice-service
+    ports:
+    - "8084:8080"
+    depends_on:
+      registry:
+        condition: service_healthy
 
