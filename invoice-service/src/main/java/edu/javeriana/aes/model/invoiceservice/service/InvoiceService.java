@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -25,7 +26,7 @@ public class InvoiceService {
         this.dispatchingRestService = dispatchingRestService;
     }
 
-    public boolean compensateInvoice(Invoice invoice) {
+    public boolean compensateInvoice(Invoice invoice, String httpVerb) {
         log.info("Starting pay Invoice process");
         log.info("Consulting routing");
         boolean result = false;
@@ -37,7 +38,7 @@ public class InvoiceService {
 
             switch (route.getProtocol()) {
                 case "REST": {
-                    Optional<PartnershipsRestStructure> restStructure = transformRestService.transform(route.getPartnerId(), invoice, "DELETE");
+                    Optional<PartnershipsRestStructure> restStructure = transformRestService.transform(route.getPartnerId(), invoice, httpVerb);
                     if (restStructure.isPresent()) {
                         PartnershipsRestStructure structure = restStructure.get();
                         log.info("Transformation result: {}", structure.getTemplateRequest());
@@ -57,6 +58,37 @@ public class InvoiceService {
     }
 
     public Invoice getInvoice(String invoice) {
+        log.info("Starting get Invoice process");
+        log.info("Consulting routing");
+        boolean result = false;
+
+        Invoice invoiceQuery = new Invoice();
+        invoiceQuery.setIdInvoice(invoice);
+        invoiceQuery.setAmount(BigDecimal.valueOf(0.0));
+
+        Optional<Route> routeResult = routingService.getRoute(invoiceQuery);
+        if (routeResult.isPresent()) {
+            Route route = routeResult.get();
+            log.info("Routing result URL: {}", route.getUrl());
+
+            switch (route.getProtocol()) {
+                case "REST": {
+                    Optional<PartnershipsRestStructure> restStructure = transformRestService.transform(route.getPartnerId(), invoiceQuery, "GET");
+                    if (restStructure.isPresent()) {
+                        PartnershipsRestStructure structure = restStructure.get();
+                        log.info("Transformation result: {}", structure.getTemplateRequest());
+                        dispatchingRestService.dispatch(route, structure);
+
+                        result = true;
+                    } else {
+                        log.error("Can't find transformation for invoice {}", invoice);
+                    }
+                    break;
+                }
+            }
+        } else {
+            log.error("Can't find route for invoice {}", invoice);
+        }
         return null;
     }
 

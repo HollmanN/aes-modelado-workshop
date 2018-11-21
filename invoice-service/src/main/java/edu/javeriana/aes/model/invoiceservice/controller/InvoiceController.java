@@ -25,7 +25,26 @@ public class InvoiceController implements InvoiceApi {
         URI location = URI.create("");
         boolean succesfull = false;
         try {
-            succesfull = invoiceService.compensateInvoice(invoice);
+            succesfull = invoiceService.compensateInvoice(invoice, "DELETE");
+            location = new URI(ServletUriComponentsBuilder
+                    .fromCurrentRequest().path("/").toUriString());
+        } catch (Exception ex) {
+
+        }
+
+        if (succesfull) {
+            return ResponseEntity.created(location).build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @Override
+    public ResponseEntity<Void> compensateInvoicePUT(@Valid Invoice invoice) {
+        URI location = URI.create("");
+        boolean succesfull = false;
+        try {
+            succesfull = invoiceService.compensateInvoice(invoice, "PUT");
             location = new URI(ServletUriComponentsBuilder
                     .fromCurrentRequest().path("/").toUriString());
         } catch (Exception ex) {

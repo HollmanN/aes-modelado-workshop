@@ -43,6 +43,22 @@ paths:
           description: 'Invoice compensation OK'
         400:
           description: 'Error on compensation'
+    put:
+      tags:
+      - Compensate invoice PUT
+      operationId: compensateInvoicePUT
+      parameters:
+      - name: invoice
+        in: body
+        type: object
+        required: true
+        schema:
+          $ref: './entities/invoice.json'
+      responses:
+        200:
+          description: 'Invoice compensation OK'
+        400:
+          description: 'Error on compensation'
   /invoice/{invoice}:
     get:
       tags:

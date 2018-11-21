@@ -34,6 +34,7 @@ public class DispatchingRestService {
                     logger.info("Generating GET request");
                     ResponseEntity<String> response = restTemplate.getForEntity(route.getUrl(), String.class);
                     logger.info("GET response: {}", response.getStatusCode());
+                    logger.info("GET response: {}", response.getBody());
                     status = response.getStatusCodeValue();
                     break;
                 }
